@@ -5,22 +5,22 @@ import React from 'react';
 const Allanimels = async() => {
 const res = await fetch('https://qurbani-hat-livestock-booking-platf.vercel.app/animals.json')
 const data = await res.json()
+const Featuredanimal = data.slice(0, 4)
 
-console.log(data)
     return (
         <div className="bg-gray-50 min-h-screen p-6 md:p-12">
             <div className="max-w-7xl mx-auto">
                 {/* Header Section */}
                 <div className="flex justify-between items-center mb-10 border-b pb-5">
                     <h2 className="text-3xl font-extrabold text-gray-800 uppercase tracking-wider">
-                        All Available <span className="text-green-600">Animals</span>
+                        All Featured <span className="text-green-600">Animals</span>
                     </h2>
-                    <p className="text-gray-500 font-medium">{data.length} Results Found</p>
+                    <p className="text-gray-500 font-medium">{Featuredanimal.length} Results Found</p>
                 </div>
 
                 {/* Grid Layout for Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    {data.map((animal) => (
+                    {Featuredanimal.map((animal) => (
                         <div 
                             key={animal.id} 
                             className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-shadow duration-300 overflow-hidden border border-gray-100 group"
