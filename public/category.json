@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "category_name": "Large Animal",
+        "description": "Premium quality cows and bulls suitable for group or individual Qurbani.",
+        "image": "https://i.ibb.co/Xz9k5P6/premier-sahiwal-cow.jpg",
+        "animal_count": 3
+    },
+    {
+        "id": 2,
+        "category_name": "Small Animal",
+        "description": "Healthy and verified goats and sheep for your sacred sacrifice.",
+        "image": "https://i.ibb.co/example-goat1.jpg",
+        "animal_count": 3
+    },
+    {
+        "id": 3,
+        "category_name": "Premium Breeds",
+        "description": "Exotic and top-tier breeds like Sahiwal, Sindhi, and Jamunapari.",
+        "image": "https://i.ibb.co/example-bull1.jpg",
+        "animal_count": 2
+    },
+    {
+        "id": 4,
+        "category_name": "Budget Friendly",
+        "description": "Affordable livestock options that meet all religious requirements.",
+        "image": "https://i.ibb.co/example-goat3.jpg",
+        "animal_count": 2
+    }
+]

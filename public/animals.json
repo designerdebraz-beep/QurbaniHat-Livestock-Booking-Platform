@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "Deshi Shahi Cow",
+    "type": "Cow",
+    "breed": "Local Deshi",
+    "price": 120000,
+    "weight": 280,
+    "age": 3,
+    "location": "Bogura",
+    "description": "Healthy deshi cow suitable for Qurbani.",
+    "image": "https://images.unsplash.com/photo-1596733430284-f7437764b1a9",
+    "category": "Large Animal"
+  },
+  {
+    "id": 2,
+    "name": "Sahiwal Cow",
+    "type": "Cow",
+    "breed": "Sahiwal",
+    "price": 180000,
+    "weight": 350,
+    "age": 4,
+    "location": "Rajshahi",
+    "description": "Strong and Sahiwal cow,",
+    "image": "https://images.unsplash.com/photo-1500595046743-cd271d694d30",
+    "category": "Large Animal"
+  },
+  {
+    "id": 3,
+    "name": "Black Bengal Goat",
+    "type": "Goat",
+    "breed": "Black Bengal",
+    "price": 25000,
+    "weight": 35,
+    "age": 2,
+    "location": "Khulna",
+    "description": "Healthy Black Bengal goat,",
+    "image": "https://images.unsplash.com/photo-1517849845537-4d257902454a",
+    "category": "Medium Animal"
+  },
+  {
+    "id": 4,
+    "name": "Jamunapari Goat",
+    "type": "Goat",
+    "breed": "Jamunapari",
+    "price": 40000,
+    "weight": 50,
+    "age": 3,
+    "location": "Dhaka",
+    "description": "Large Jamunapari goat with excellent health condition.",
+    "image": "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13",
+    "category": "Medium Animal"
+  },
+  {
+    "id": 5,
+    "name": "Deshi Sheep",
+    "type": "Sheep",
+    "breed": "Local Sheep",
+    "price": 20000,
+    "weight": 30,
+    "age": 2,
+    "location": "Mymensingh",
+    "description": "Locally raised sheep,",
+    "image": "https://images.unsplash.com/photo-1546182990-dffeafbe841d",
+    "category": "Medium Animal"
+  },
+  {
+    "id": 6,
+    "name": "Broiler Chicken",
+    "type": "Chicken",
+    "breed": "Broiler",
+    "price": 500,
+    "weight": 2,
+    "age": 0.5,
+    "location": "Chattogram",
+    "description": "Fresh broiler chicken, farm-raised and healthy.",
+    "image": "https://images.unsplash.com/photo-1589927986089-35812388d1f4",
+    "category": "Small Animal"
+  }
+]
