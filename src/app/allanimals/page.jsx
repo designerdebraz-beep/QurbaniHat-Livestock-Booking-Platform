@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const AllanimalsPage = async () => {
@@ -29,6 +30,7 @@ const AllanimalsPage = async () => {
                                     alt={animal.name}
                                     width={100}
                                     height={100}
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
@@ -59,9 +61,9 @@ const AllanimalsPage = async () => {
                                         <p className="text-xs text-gray-400 uppercase font-bold">Price</p>
                                         <p className="text-lg font-black text-orange-600">৳ {animal.price.toLocaleString()}</p>
                                     </div>
-                                    <button className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition-colors duration-300 active:scale-95">
+                                    <Link href={`/allanimals/${animal.id}`}><button className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition-colors duration-300 active:scale-95">
                                         View Details
-                                    </button>
+                                    </button></Link>
                                 </div>
                             </div>
                         </div>
