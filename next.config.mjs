@@ -6,7 +6,7 @@ const nextConfig = {
     remotePatterns: [
       {
         
-        hostname: 'i.ibb.com',
+        hostname: '**',
         
         
       },
