@@ -2,21 +2,64 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const AllanimalsPage = async () => {
-    const res = await fetch('https://qurbani-hat-livestock-booking-platf.vercel.app/animals.json')
-    const data = await res.json()
+const AllanimalsPage = async ({ searchParams }) => {
+    // searchParams থেকে সর্ট ভ্যালু নেওয়া (Next.js Server Component style)
+    const params = await searchParams;
+    const sortOrder = params?.sort;
+
+    // ডেটা ফেচ করা
+    const res = await fetch('https://qurbani-hat-livestock-booking-platf.vercel.app/animals.json', {
+        cache: 'no-store' // লেটেস্ট ডেটা পাওয়ার জন্য
+    });
+    let data = await res.json();
+
+    // সর্টিং লজিক (Pure JavaScript logic)
+    if (sortOrder === 'low') {
+        data.sort((a, b) => a.price - b.price); // কম থেকে বেশি
+    } else if (sortOrder === 'high') {
+        data.sort((a, b) => b.price - a.price); // বেশি থেকে কম
+    }
+
     return (
         <div className="bg-gray-50 min-h-screen p-6 md:p-12">
             <div className="max-w-7xl mx-auto">
-                {/* Header Section */}
-                <div className="flex justify-between items-center mb-10 border-b pb-5">
-                    <h2 className="text-3xl font-extrabold text-gray-800 uppercase tracking-wider">
-                        All <span className="text-green-600">Animals</span>
-                    </h2>
-                    <p className="text-gray-500 font-medium">{data.length} Results Found</p>
+                
+                {/* Header & Sort Options */}
+                <div className="flex flex-col md:flex-row justify-between items-center mb-10 border-b pb-5 gap-4">
+                    <div>
+                        <h2 className="text-3xl font-extrabold text-gray-800 uppercase tracking-wider">
+                            All <span className="text-green-600">Animals</span>
+                        </h2>
+                        <p className="text-gray-500 font-medium">{data.length} Results Found</p>
+                    </div>
+
+                    {/* Sorting Links */}
+                    <div className="flex items-center gap-2 bg-white p-2 rounded-xl shadow-sm border border-gray-200">
+                        <span className="text-xs font-bold text-gray-400 px-2">SORT BY PRICE:</span>
+                        
+                        <Link 
+                            href="/allanimals?sort=low"
+                            className={`px-3 py-1.5 text-sm rounded-lg transition-all ${sortOrder === 'low' ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'}`}
+                        >
+                            Low to High
+                        </Link>
+
+                        <Link 
+                            href="/allanimals?sort=high"
+                            className={`px-3 py-1.5 text-sm rounded-lg transition-all ${sortOrder === 'high' ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'}`}
+                        >
+                            High to Low
+                        </Link>
+
+                        {sortOrder && (
+                            <Link href="/allanimals" className="text-xs text-red-500 hover:underline px-2">
+                                Clear
+                            </Link>
+                        )}
+                    </div>
                 </div>
 
-                {/* Grid Layout for Cards */}
+                {/* Grid Layout */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {data.map((animal) => (
                         <div
@@ -28,9 +71,8 @@ const AllanimalsPage = async () => {
                                 <Image
                                     src={animal.image}
                                     alt={animal.name}
-                                    width={100}
-                                    height={100}
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                    width={400}
+                                    height={300}
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
@@ -61,9 +103,11 @@ const AllanimalsPage = async () => {
                                         <p className="text-xs text-gray-400 uppercase font-bold">Price</p>
                                         <p className="text-lg font-black text-orange-600">৳ {animal.price.toLocaleString()}</p>
                                     </div>
-                                    <Link href={`/allanimals/${animal.id}`}><button className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition-colors duration-300 active:scale-95">
-                                        View Details
-                                    </button></Link>
+                                    <Link href={`/allanimals/${animal.id}`}>
+                                        <button className="bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition-colors duration-300 active:scale-95">
+                                            View Details
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
