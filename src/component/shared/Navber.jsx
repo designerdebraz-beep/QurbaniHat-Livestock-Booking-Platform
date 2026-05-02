@@ -81,6 +81,7 @@ const Navbar = () => {
                   {user.image ? (
                     <Image
                       src={user?.image}
+                      referrerPolicy='no-referrer'
                       alt={user?.name || "User"}
                       width={28}
                       height={28}
