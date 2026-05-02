@@ -2,10 +2,13 @@
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Message } from './Message';
 
 const BookingButton = ({ animalName }) => {
     const handleBookNow = () => {
-        toast.success(`${animalName} successfully booked!`, {
+      
+
+        toast.success(`${animalName} successfully add to list!`, {
             position: "top-right",
             autoClose: 3000,
             theme: "colored",
@@ -16,9 +19,9 @@ const BookingButton = ({ animalName }) => {
         <>
             <button 
                 onClick={handleBookNow}
-                className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-emerald-200 transition-all active:scale-95"
+                className="flex-1 bg-white border-2 border-gray-200 hover:border-emerald-600 text-gray-700 font-bold py-4 rounded-2xl transition-all active:scale-95"
             >
-                Book Now
+                Add to List
             </button>
             <ToastContainer />
         </>

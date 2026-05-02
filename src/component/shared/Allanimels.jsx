@@ -4,7 +4,9 @@ import Link from 'next/link';
 import React from 'react';
 
 const Allanimels = async() => {
-const res = await fetch('https://qurbani-hat-livestock-booking-platf.vercel.app/animals.json')
+const res = await fetch('https://my-app-umber-seven-76.vercel.app/animals.json',{
+    cache: "no-store"
+})
 const data = await res.json()
 const Featuredanimal = data.slice(0, 4)
 

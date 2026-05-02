@@ -4,18 +4,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { toast, ToastContainer } from 'react-toastify';
 import BookingButton from '@/component/shared/BookingButton';
+import { Message } from '@/component/shared/Message';
 
 const DetailsPage = async ({ params }) => {
     const { id } = await params;
-  
-    
-    // Fetching data
-    const res = await fetch('https://qurbani-hat-livestock-booking-platf.vercel.app/animals.json', {
+
+
+
+    const res = await fetch('https://my-app-umber-seven-76.vercel.app/animals.json', {
         cache: 'no-store'
     });
     const data = await res.json();
-    
-    // Finding the specific animal
+
+
     const animal = data.find(a => a.id == id);
 
     if (!animal) {
@@ -25,7 +26,7 @@ const DetailsPage = async ({ params }) => {
     return (
         <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
-                
+
                 {/* Back Button */}
                 <Link href="/" className="inline-flex items-center text-emerald-600 hover:text-emerald-700 font-semibold mb-6 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,7 +37,7 @@ const DetailsPage = async ({ params }) => {
 
                 <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
                     <div className="flex flex-col lg:flex-row">
-                        
+
                         {/* Left Side: Image Section */}
                         <div className="lg:w-1/2 relative h-[400px] lg:h-auto">
                             <Image
@@ -90,15 +91,19 @@ const DetailsPage = async ({ params }) => {
                             {/* Action Buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-100">
 
-                                <BookingButton animalName={animal.name} />
-                                
+                                {<Message></Message>}
+
+                                {/* <BookingButton animalName={animal.name} /> */}
+
+
+
                                 {/* <button  className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-emerald-200 transition-all active:scale-95">
                                     Book Now
                                 </button> */}
 
-                                <button className="flex-1 bg-white border-2 border-gray-200 hover:border-emerald-600 text-gray-700 font-bold py-4 rounded-2xl transition-all active:scale-95">
+                                {/* <button className="flex-1 bg-white border-2 border-gray-200 hover:border-emerald-600 text-gray-700 font-bold py-4 rounded-2xl transition-all active:scale-95">
                                     Contact Owner
-                                </button>
+                                </button> */}
                             </div>
                         </div>
 

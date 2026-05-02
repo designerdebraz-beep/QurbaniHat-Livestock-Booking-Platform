@@ -3,21 +3,21 @@ import Link from 'next/link';
 import React from 'react';
 
 const AllanimalsPage = async ({ searchParams }) => {
-    // searchParams থেকে সর্ট ভ্যালু নেওয়া (Next.js Server Component style)
+    
     const params = await searchParams;
     const sortOrder = params?.sort;
 
-    // ডেটা ফেচ করা
-    const res = await fetch('https://qurbani-hat-livestock-booking-platf.vercel.app/animals.json', {
-        cache: 'no-store' // লেটেস্ট ডেটা পাওয়ার জন্য
+  
+    const res = await fetch('https://my-app-umber-seven-76.vercel.app/animals.json', {
+        cache: 'no-store'
     });
     let data = await res.json();
 
-    // সর্টিং লজিক (Pure JavaScript logic)
+    
     if (sortOrder === 'low') {
-        data.sort((a, b) => a.price - b.price); // কম থেকে বেশি
+        data.sort((a, b) => a.price - b.price); 
     } else if (sortOrder === 'high') {
-        data.sort((a, b) => b.price - a.price); // বেশি থেকে কম
+        data.sort((a, b) => b.price - a.price); 
     }
 
     return (
