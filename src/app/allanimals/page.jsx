@@ -73,7 +73,9 @@ const AllanimalsPage = async ({ searchParams }) => {
                                     alt={animal.name}
                                     width={400}
                                     height={300}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                                 <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                                     {animal.category || 'Livestock'}
