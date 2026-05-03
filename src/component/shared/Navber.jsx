@@ -3,13 +3,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-// Added User icon for fallback
 import { Menu, X, LogOut, User as UserIcon } from 'lucide-react'; 
 import { authClient } from '@/lib/auth-client';
-import { useRouter } from 'next/navigation';
+// 1. Import usePathname
+import { useRouter, usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const router = useRouter();
+  // 2. Initialize pathname
+  const pathname = usePathname();
   const usedata = authClient.useSession();
   const user = usedata.data?.user;
 
@@ -53,13 +55,25 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex items-center gap-8 text-sm font-medium">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link href={link.href} className="hover:text-green-600 transition-colors">
-                  {link.name}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              // 3. Check if link is active
+              const isActive = pathname === link.href;
+              
+              return (
+                <li key={link.name}>
+                  <Link 
+                    href={link.href} 
+                    className={`transition-colors ${
+                      isActive 
+                        ? "text-green-600 font-bold" 
+                        : "hover:text-green-600 text-gray-600"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Auth Buttons & User Data (Desktop) */}
@@ -76,7 +90,6 @@ const Navbar = () => {
               </div>
             ) : (
               <div className="flex items-center gap-4">
-                {/* User Info Section */}
                 <div className="flex items-center gap-2 px-2 py-1 bg-gray-50 rounded-full border border-gray-100">
                   {user.image ? (
                     <Image
@@ -119,17 +132,24 @@ const Navbar = () => {
         {/* Mobile Sidebar/Menu */}
         <div className={`md:hidden ${isOpen ? "block" : "hidden"} pb-4 transition-all`}>
           <ul className="flex flex-col gap-4 text-base font-medium border-t pt-4">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block hover:text-green-600"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              // 4. Check if active for mobile
+              const isActive = pathname === link.href;
+
+              return (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`block ${
+                      isActive ? "text-green-600 font-bold" : "hover:text-green-600"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              );
+            })}
             <hr />
             <div className="flex flex-col gap-3">
               {!user ? (
@@ -147,7 +167,6 @@ const Navbar = () => {
                 </>
               ) : (
                 <div className="flex flex-col gap-3">
-                  {/* Mobile User Data Display */}
                   <div className="flex items-center gap-3 px-2 py-2">
                     {user?.image ? (
                       <Image
